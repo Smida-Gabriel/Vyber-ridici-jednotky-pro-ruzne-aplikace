@@ -223,7 +223,8 @@ Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení 
      - Rozšiřující moduly (pokud jsou nutné pro AI 4–20 mA nebo AO 0–10 V): `Signal Board SB 1232 AO (pro analogový výstup 0–10 V k frekvenčnímu měniči), Signálový modul SM 1231 AI (pro zpracování proudového signálu 4–20 mA z ponorné sondy, jelikož základní CPU má standardně vestavěné pouze napěťové vstupy 0–10 V).`
      - Napájecí napětí zvolené jednotky: `24 V DC`
      - Jak je vyřešeno odesílání dat na dispečink: `Primárně přes integrovaný PROFINET/Ethernet port (protokol Modbus TCP) připojený do průmyslového LTE/GSM routeru (např. Scalance nebo Teltonika), který zajišťuje bezpečné VPN připojení na centrální dispečink vodáren.`
-     - Odkaz na technický list (datasheet): `...`
+     - Odkaz na technický list (datasheet): `...?
+     - https://cache.industry.siemens.com/dl/files/465/36932465/att_106119/v1/s71200_system_manual_en-US_en-US.pdf ?`
      - Odkazy na další použité zdroje: `...`
 
 3. **Technické ověření z datasheetu:**
