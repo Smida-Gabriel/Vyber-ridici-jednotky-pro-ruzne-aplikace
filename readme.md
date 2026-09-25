@@ -78,42 +78,42 @@ Proč se u kritických aplikací v letectví (např. systém řízení letu Fly-
 1. **Typy pamětí v řídicích jednotkách:**
    - Doplňte porovnání pamětí z hlediska stálosti dat a rychlosti:
      - **RAM:** 
-	     - Je volatilní (energeticky závislá)? `[Ano / Ne]`
-	     - Rychlost zápisu: `...` 
-	     - K čemu se využívá v PLC/MCU: `...`
+	     - Je volatilní (energeticky závislá)? `[Ano]`
+	     - Rychlost zápisu: `Velm vysoká` 
+	     - K čemu se využívá v PLC/MCU: `Pro běh programu, dočasné proměnné, zásobník a aktuální data během činnosti zařízení.`
      - **Flash (ROM):** 
-	     - Je volatilní? `[Ano / Ne]`
-	     - K čemu se využívá v PLC/MCU: `...`
+	     - Je volatilní? `[Ne]`
+	     - K čemu se využívá v PLC/MCU: `ro uložení samotného uživatelského programu (firmwaru).`
      - **EEPROM / NVRAM:** 
-	     - Je volatilní? `[Ano / Ne]`
-	     - K čemu se využívá v PLC/MCU: `...`
+	     - Je volatilní? `[Ne]`
+	     - K čemu se využívá v PLC/MCU: `Pro uložení konfiguračních parametrů, kalibračních dat nebo remanentních (retain) dat, která nesmí zmizet při výpadku napájení.`
    - *Otázka z praxe:* Kam se v průmyslovém PLC ukládají aktuální provozní proměnné (např. čítače vyrobených kusů nebo motohodiny), aby se při nečekaném výpadku napájení neztratily (tzv. remanentní / retain data)?
-     - Odpověď: `...`
+     - Odpověď: `Ukládají se do EEPROM, NVRAM nebo do paměti RAM zálohované baterií.`
 
 2. **Reálný čas a determinismus (Hard vs. Soft Real-Time):**
    - Proč pro reakci na nouzové zastavení lisu (požadavek reakce do 5 ms) použijeme PLC či mikrokontrolér s RTOS, a nikoliv běžné Raspberry Pi s operačním systémem Raspberry Pi OS (standardní Linux)?
-     - Odpověď: `...`
+     - Odpověď: `Standardní operační systémy (jako běžný Linux) mají non-deterministické plánování úloh (procesy mohou být zpožděny kvůli správě paměti, úlohám na pozadí apod.). RTOS (Real-Time Operating System) garantuje deterministické chování a maximální dobu odezvy (tzv. worst-case execution time). U nouzového zastavení lisu (do 5 ms) je tato garance kritická pro bezpečnost obsluhy.`
 
 3. **Odolnost vůči vlivům prostředí a dešifrování kódu IP:**
    - Dešifrujte kód **IP68**:
-     - První číslice (6): `...`
-     - Druhá číslice (8): `...`
+     - První číslice (6): `plná ochrana před vniknutím prachu (prachotěsné).`
+     - Druhá číslice (8): `Ochrana proti trvalému potopení ve vodě (za podmínek určených výrobcem).`
    - Jaké minimální krytí IP musí mít rozváděč umístěný ve venkovním nekrytém prostředí, kde na něj přímo dopadá déšť a fouká polétavý prach?
-     - Označte správnou volbu: `[ ] IP20` | `[ ] IP44` | `[ ] IP65` | `[ ] IP00`
-     - Zdůvodnění: `...`
+     - Označte správnou volbu: `[ ] IP20` | `[ ] IP44` | `[x] IP65` | `[ ] IP00`
+     - Zdůvodnění: `Stupeň IP65 zajišťuje plnou prachotěsnost a ochranu proti tryskající vodě ze všech směrů (tedy spolehlivě odolá dešti i polétavému prachu), což nižší třídy (IP20, IP44) nezaručují.`
 
 4. **Konstrukční rozdíly kancelářského PC vs. průmyslového iPC:**
    - Vyberte a doplňte hlavní odlišnosti:
      - *Chlazení:* 
-	     - Kancelářské PC: `...` 
-	     - vs. iPC: `...`
+	     - Kancelářské PC: `Aktivní (ventilátory, nasává prach)` 
+	     - vs. iPC: `Pasivní (žebrované hliníkové šasi bez ventilátorů) nebo hermeticky uzavřené`
      - *Napájecí napětí a filtrace:* 
-	     - Kancelářské PC: `...` 
-	     - vs. iPC: `...`
-     - *Odolnost proti otřesům a vibracím:* `...`
+	     - Kancelářské PC: `Standardní zdroj (230 V AC)` 
+	     - vs. iPC: `Průmyslový standard 24 V DC s filtrací rušení a možností zálohování`
+     - *Odolnost proti otřesům a vibracím:* `kancelářské nízká(citlivé díly např HDD) a iPC vysoká(dizajn pro průmysl např SSD na místo HDD) `
      - *Způsob montáže:* 
 	     - Kancelářské PC: na stůl/pod stůl 
-	     - vs. iPC: `...`
+	     - vs. iPC: `Na DIN lištu, do panelu (rackmount), na stěnu`
 
 > :key: **Vysvětlení pojmů a odborné zdroje:**
 > - **Determinismus (Real-Time):** Vlastnost systému, která zaručuje, že odezva na vstupní událost proběhne vždy v přesně definovaném a předvídatelném čase (deadline). V *Hard Real-Time* systémech znamená nedodržení časového limitu fatální havárii celého procesu. 
