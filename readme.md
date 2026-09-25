@@ -155,8 +155,8 @@ Vyplňte rozhodovací matici. Jako vzor poslouží vyplněný sloupec pro **Vzor
 | Kritérium hodnocení                                                                                   | **Vzorová aplikace 0 (Vjezdová závora - VZOR)**                                                                                                                                                                           | Aplikace A (Pokojový termostat) | Aplikace B (Balicí linka) | Aplikace C (Kamerová kontrola svarů) |
 | :---------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------ | :------------------------ | :----------------------------------- |
 | **Doporučená platforma** *(MCU / PLC / iPC)*                                                          | **Programovatelné relé / kompaktní PLC** *(např. Siemens LOGO!, Eaton easyE4)*                                                                                                                                            | `MCU`                           | `PLC`                     | `iPC`                                |
-| **Pořizovací cena HW na 1 kus** *(nízká < 500 Kč / střední 5–30 tis. Kč / vysoká > 50 tis. Kč)*       | **Střední** *(cca 3 500 – 6 000 Kč)*                                                                                                                                                                                      | `nízká`                         | `střední(2 000-30 000) `                     | `vysoká(4k - 150+k)`                                |
-| **Primární programovací jazyk** *(C/C++/MicroPython vs. IEC 61131-3 ST/LAD vs. Python/C#/C++ pod OS)* | **FBD / LAD** *(grafické funkční bloky nebo liniové schéma dle IEC 61131-3)*                                                                                                                                              | `C nebo C++`                    | `LAD/ST grafické jazyky`                     | `kód pod OS, C#, Python`                                |
+| **Pořizovací cena HW na 1 kus** *(nízká < 500 Kč / střední 5–30 tis. Kč / vysoká > 50 tis. Kč)*       | **Střední** *(cca 3 500 – 6 000 Kč)*                                                                                                                                                                                      | `nízká`                         | `střední(2k - 30k) `      | `vysoká(4k - 150+k)`                 |
+| **Primární programovací jazyk** *(C/C++/MicroPython vs. IEC 61131-3 ST/LAD vs. Python/C#/C++ pod OS)* | **FBD / LAD** *(grafické funkční bloky nebo liniové schéma dle IEC 61131-3)*                                                                                                                                              | `C nebo C++`                    | `LAD/ST grafické jazyky`  | `kód pod OS, C#, Python`             |
 | **Klíčový technický argument pro volbu** *(např. spotřeba, determinismus, grafický výkon)*            | Montáž přímo na DIN lištu v rozváděči, integrovaný displej pro nastavení časovačů přímo na místě, robustní reléové výstupy pro motor a semafor, napájení 24 V DC / 230 V AC bez nutnosti vývoje vlastního plošného spoje. | `Extrémně nízká spotřeba energie, Nízké výrobní náklady, Kompaktní rozměry a integrace a Rodilá podpora IoT protokolů`| `Průmyslová odolnost a spolehlivost (provoz 24/7), Připravenost pro průmyslové I/O, Snadná údržba a Bezpečnost`                     | `Obrovský výpočetní výkon pro AI a neuronové sítě, Konektivita a propustnost dat (GigE kamery), Přímá integrace s IT a databázemi (SQL / MES) a Průmyslové provedení pro automotive`                                |
 | **Hlavní riziko při volbě špatné platformy** *(proč by neuspěly ostatní dvě varianty)*                | **MCU:** Nutnost vývoje vlastní desky, nízká odolnost vůči venkovnímu rušení a obtížný servis údržbou.<br>**iPC:** Zbytečně extrémní cena (> 30 tis. Kč), dlouhý start po výpadku napájení a vysoká spotřeba.             | `PLC - trvalé napájení, vysoká cena(tisíce Kč), velké rozměry; iPC - vysoký odběr, extrémní cena(desetitisíce Kč), velké rozměry`| `MCU - nízká robustnost bez drahého krytí, Nutný vývoj vlastních obvodů, Téměř nemožná údržba/servis, Složitá integrace; iPC - Dobrá (kovové šasi, bez větráků), Nutné drahé komunikační karty Obtížná (kód pod OS, C#, Python) údržba/servis a Možné, ale předimenzované`                     | `PLC - nedostatek výkonu, velmy omezené rozhraní pro GigE kamery, Složitá práce s SQL / MES databází; MCU - nedostatek RAM a výkonu, žádné rozhraní pro kamery, téměř nemožná Práce s SQL / MES databází`                                |
 
@@ -209,31 +209,31 @@ Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení 
 
 | Typ signálu | Požadavek aplikace (kusy) | Popis signálů v aplikaci | Počet po započtení rezervy (+20 %) |
 | :--- | :--- | :--- | :--- |
-| **Digitální vstup (DI)** | `...` | `...` | `...` |
-| **Digitální výstup (DO) – reléový** | `...` | `...` | `...` |
-| **Digitální výstup (DO) – tranzistorový** | `...` | `...` | `...` |
-| **Analogový vstup (AI)** | `...` | `...` | `...` |
-| **Analogový výstup (AO)** | `...` | `...` | `...` |
+| **Digitální vstup (DI)** | `4` | `3× plovákový spínač (spodní hladina, zapínací, přepad) + 1× termistorové relé motoru` | `5` |
+| **Digitální výstup (DO) – reléový** | `3` | `2× spouštění stykačů čerpadel + 1× opticko-akustický maják` | `4` |
+| **Digitální výstup (DO) – tranzistorový** | `0` | `Nepoužito v této aplikaci` | `0` |
+| **Analogový vstup (AI)** | `1` | `1× hydrostatická ponorná sonda (4–20 mA)` | `2` |
+| **Analogový výstup (AO)** | `1` | `1× řízení otáček frekvenčního měniče (0–10 V)` | `2` |
 
 2. **Výběr konkrétního hardwaru z katalogu výrobce:**
    - Navrhněte konkrétní přístroj z praxe (např. *Siemens LOGO! 24RCE + rozšiřující moduly*, *Siemens S7-1200 CPU 1212C/1214C DC/DC/RLY*, *Schneider Modicon M221*, *Eaton easyE4-UC-12RC1*, *WAGO 750*, případně průmyslový IoT kontrolér typu *UniPi Neuron*).
    - Uveďte:
-     - Výrobce a přesný model CPU: `...`
-     - Objednací kód (Part Number / Order Code): `...`
-     - Rozšiřující moduly (pokud jsou nutné pro AI 4–20 mA nebo AO 0–10 V): `...`
-     - Napájecí napětí zvolené jednotky: `...`
-     - Jak je vyřešeno odesílání dat na dispečink: `...`
+     - Výrobce a přesný model CPU: `Siemens SIMATIC S7-1200, CPU 1214C DC/DC/RLY`
+     - Objednací kód (Part Number / Order Code): `6ES7214-1BG40-0XB0 (příp. aktuální revize řady 6ES7214-1BG41-0XB0)`
+     - Rozšiřující moduly (pokud jsou nutné pro AI 4–20 mA nebo AO 0–10 V): `Signal Board SB 1232 AO (pro analogový výstup 0–10 V k frekvenčnímu měniči), Signálový modul SM 1231 AI (pro zpracování proudového signálu 4–20 mA z ponorné sondy, jelikož základní CPU má standardně vestavěné pouze napěťové vstupy 0–10 V).`
+     - Napájecí napětí zvolené jednotky: `24 V DC`
+     - Jak je vyřešeno odesílání dat na dispečink: `Primárně přes integrovaný PROFINET/Ethernet port (protokol Modbus TCP) připojený do průmyslového LTE/GSM routeru (např. Scalance nebo Teltonika), který zajišťuje bezpečné VPN připojení na centrální dispečink vodáren.`
      - Odkaz na technický list (datasheet): `...`
      - Odkazy na další použité zdroje: `...`
 
 3. **Technické ověření z datasheetu:**
-   - Zvládá zvolená jednotka garantovaný provoz při -20 °C? Doložte údaj z datasheetu: `...`
-   - Jakým způsobem spínáte cívku stykače 230 V AC (reléový výstup jednotky přímo, nebo přes pomocné mezilehlé relé)? Zdůvodněte: `...`
+   - Zvládá zvolená jednotka garantovaný provoz při -20 °C? Doložte údaj z datasheetu: `Údaj z datasheetu: PLC SIMATIC S7-1200 při horizontální montáži garantuje provozní teplotu v rozsahu -20 °C až +60 °C. Jednotka tedy splňuje požadavek bez nutnosti speciálního mrazuvzdorného provedení, avšak vyžaduje zajištění vnitřní teploty rozváděče (viz níže).`
+   - Jakým způsobem spínáte cívku stykače 230 V AC (reléový výstup jednotky přímo, nebo přes pomocné mezilehlé relé)? Zdůvodněte: `Způsob: Spínání probíhá přes pomocná mezilehlá relé (interposing relays, např. značky Finder nebo Phoenix Contact) umístěná mezi reléovým výstupem PLC a silovou cívkou stykače.(Zdůvodnění: Přestože reléové výstupy S7-1200 zvládnou spínat 230 V AC, cívky stykačů představují induktivní zátěž. Použití mezilehlých relé zajišťuje galvanické oddělení, chrání drahé výstupy PLC před opotřebením a špičkami způsobenými spínáním indukčností a zvyšuje celkovou životnost a bezpečnost zařízení.)`
 
 4. **Krytí rozváděče:**
    - Jaké minimální krytí **IP skříně** zvolíte? Jak v rozváděči zajistíte provoz v mrazech -20 °C a v letních vedrech?
-     - Zvolené krytí rozváděče: `...`
-     - Teplotní management skříně: `...`
+     - Zvolené krytí rozváděče: `Minimálně IP65 (prachotěsné a chráněné proti tryskající vodě ze všech směrů, odolné vůči prudkému dešti). Skříň by měla být ideálně nerezová (AISI 304 / 316) nebo z vysoce odolného polyesteru skelného vlákna.`
+     - Teplotní management skříně: `V zimě (-20 °C): Instalace skříňového topného tělesa s ventilátorem (např. s PTC registrem) řízeného termostatem. Topné těleso udržuje uvnitř rozváděče minimální teplotu (cca +5 °C až +10 °C), což zabraňuje podchlazení elektroniky, tvorbě kondenzátu a zamrznutí komponent. V létě (+45 °C venku): Umístění rozváděče ve stínu (např. dodatečná stříška proti přímému slunečnímu svitu), použití ventilační mřížky s filtrem (s krytím IP54/IP55 s labyrintem) a nuceným odvětrávacím ventilátorem spínaným vnitřním hygrostatem/termostatem tak, aby vnitřní teplota nepřesáhla maximální povolenou pracovní teplotu komponent PLC (obvykle +60 °C).`
 
 > **Kritéria hodnocení úlohy 4 (bodování a známka):**
 > - :star: **Správnost I/O bilance a dimenzování (30 %):** Správný součet všech signálů, korektní rozlišení reléových vs. tranzistorových výstupů a správné započtení rezervy min. 20 %.
