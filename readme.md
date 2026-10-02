@@ -278,10 +278,10 @@ Jako vedoucí inženýr jste převzal projekt po nezkušeném brigádníkovi, kt
 
 | Oblast auditu | Zjištěná vada v amatérském návrhu | Fyzikální mechanismus selhání (proč to selže) | Následek pro stroj nebo obsluhu |
 | :--- | :--- | :--- | :--- |
-| **Elektromagnetická kompatibilita (EMC)** | `...` | Napěťové špičky z indukční zátěže hydraulických ventilů způsobí restart MCU... | `...` |
-| **Mechanická a teplotní odolnost** | PLA plast a montáž na těleso lisu | `...` | `...` |
-| **Konektivita a propojení vodičů** | DuPont propojovací kabely bez aretace | `...` | `...` |
-| **Funkční bezpečnost (Safety)** | Nouzový stop řešený softwarově v čipu | `...` | `...` |
+| **Elektromagnetická kompatibilita (EMC)** | `Běžné hobby reléové moduly bez optočlenů, DuPont vodiče, Arduino bez stínění v blízkosti 400V ventilů.` | Napěťové špičky z indukční zátěže hydraulických ventilů způsobí restart MCU... | `Neřízený pohyb lisu, neočekávané spuštění cyklu v nevhodný okamžik a ohrožení obsluhy v nebezpečném prostoru.` |
+| **Mechanická a teplotní odolnost** | PLA plast a montáž na těleso lisu | `PLA má nízkou teplotu skelného přechodu ($\approx 55\text{--}60^\circ\text{C}$). Teplo z okolí kovářské dílny a hydrauliky způsobí měknutí plastu. Vibrace lisu vyvolávají únavu materiálu, povolení šroubů, mikrotrhliny a vypadnutí vodičů.` | `Mechanické rozpadnutí krytu, zkrat obnažených silových vodičů na kovovou kostru stroje a celková ztráta kontroly nad zařízením.` |
+| **Konektivita a propojení vodičů** | DuPont propojovací kabely bez aretace | `Trvalé dynamické vibrace lisu způsobují postupné vyklepávání a uvolňování dutinkových kontaktů z pinů, nárůst přechodového odporu, jiskření a přerušení obvodu.` | `Výpadek přenosu řídicích signálů, chybné vyhodnocení stavů snímačů nebo selhání akčních členů během provozu.` |
+| **Funkční bezpečnost (Safety)** | Nouzový stop řešený softwarově v čipu | `Software může selhat (zacyklení, zamrznutí MCU, poškození paměti, výpadek napájení před zpracováním přerušení). Běžný pin Arduina a tranzistor nezajišťují hardwerovou úroveň bezpečnosti (kategorie dle EN ISO 13849-1).` | `Tlačítko E-Stop v kritické situaci selže, lis nezastaví a dojde k těžkému úrazu obsluhy (pohmoždění, amputace končetiny).` |
 
 2. **Návrh profesionálního nápravného řešení:**
    - Navrhněte, jakými certifikovanými průmyslovými komponenty tento celek nahradíte při zachování minimálního rozpočtu:
