@@ -225,7 +225,7 @@ Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení 
      - Jak je vyřešeno odesílání dat na dispečink: `Primárně přes integrovaný PROFINET/Ethernet port (protokol Modbus TCP) připojený do průmyslového LTE/GSM routeru (např. Scalance nebo Teltonika), který zajišťuje bezpečné VPN připojení na centrální dispečink vodáren.`
      - Odkaz na technický list (datasheet): `...?
      - https://cache.industry.siemens.com/dl/files/465/36932465/att_106119/v1/s71200_system_manual_en-US_en-US.pdf ?`
-     - Odkazy na další použité zdroje: `...`
+     - Odkazy na další použité zdroje: `https://gemini.google.com/app (bez promptu vloženého zadání)`
 
 3. **Technické ověření z datasheetu:**
    - Zvládá zvolená jednotka garantovaný provoz při -20 °C? Doložte údaj z datasheetu: `Údaj z datasheetu: PLC SIMATIC S7-1200 při horizontální montáži garantuje provozní teplotu v rozsahu -20 °C až +60 °C. Jednotka tedy splňuje požadavek bez nutnosti speciálního mrazuvzdorného provedení, avšak vyžaduje zajištění vnitřní teploty rozváděče (viz níže).`
